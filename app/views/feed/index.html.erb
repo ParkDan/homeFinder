@@ -1,0 +1,49 @@
+<div ng-app='app.exampleApp' ng-controller='ExampleCtrl'>
+
+	<div class='row'>
+		<div class='col-sm-4'
+			<label for="address1">Address</label>
+			<input class="form-control" id="address1" ng-model="address1"></input>
+		</div>
+		<div class='col-sm-4'
+			<label for="address2">City, State, and/or zip</label>
+			<input class="form-control" id="address2" ng-model="address2"></input>
+		</div>
+	</div>
+	<br>
+	<button type="button" class="btn btn-primary" ng-click="search()">Search</button>
+	<br>
+	<br>
+	<div ng-show="error" class="forecast-errors alert alert-danger alert-dismissible fade in">
+    <button type="button" ng-click='clearErrors()' class="close" data-dismiss="alert" aria-label="Close">x</button>
+  	{{ error }}
+  </div>
+
+	<table ng-show="tableDisplayed" id="real-estate-details" class="table table-bordered table-striped">
+    <tr>
+      <th>zpid</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>state</th>
+      <th>zipcode</th>
+      <th>Last Updated</th>
+      <th>Zestimate Amount</th>
+      <th>Valuation Range High</th>
+      <th>Valuation Range Low</th>
+      <th>Valuation Change</th>
+    </tr>
+    <tr ng-repeat="result in results track by $index">
+      <td>{{result.zpid}}</td>
+      <td>{{result.address.street}}</td>
+      <td>{{result.address.city}}</td>
+      <td>{{result.address.state}}</td>
+      <td>{{result.address.zipcode}}</td>
+      <td>{{result.zestimate.last_updated}}</td>
+      <td>${{result.zestimate.amount.__content__}}</td>
+      <td>${{result.zestimate.valuationRange.high.__content__}}</td>
+      <td>${{result.zestimate.valuationRange.low.__content__}}</td>
+      <td>${{result.zestimate.valueChange.__content__}}</td>
+    </tr>
+  </table>
+
+</div>
