@@ -5,6 +5,7 @@ angular.module('app.exampleApp').controller("ExampleCtrl", [
     $scope.search = function(){
     	$scope.results = [];
     	housing_details.get($scope.address1, $scope.address2).then(function(response) {
+            console.log(response);
         	$scope.results.push(response.data.searchresults.response.results.result);
         	console.log($scope.results[0]);
     			$scope.tableDisplayed = true;
