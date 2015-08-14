@@ -18,7 +18,7 @@
     <button type="button" ng-click='clearErrors()' class="close" data-dismiss="alert" aria-label="Close">x</button>
   	{{ error }}
   </div>
-
+<div id="exportable">
 	<table ng-show="tableDisplayed" id="real-estate-details" class="table table-bordered table-striped">
     <tr>
       <th>zpid</th>
@@ -45,5 +45,13 @@
       <td>${{result.zestimate.valueChange.__content__}}</td>
     </tr>
   </table>
-
+  </div>
+  <div ng-show="tableDisplayed" class='row'>
+    <div class='col-sm-4'
+      <label for="fileName">File Name</label>
+      <input class="form-control" id="fileName" ng-model="fileName"></input>
+      <br>
+      <button type="button" class="btn btn-primary" ng-click="exportData(fileName)">Export</button>
+    </div>
+  </div>
 </div>
