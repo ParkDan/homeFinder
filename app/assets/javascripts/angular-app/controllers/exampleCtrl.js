@@ -5,13 +5,13 @@ angular.module('app.exampleApp').controller("ExampleCtrl", [
     $scope.search = function(){
     	$scope.results = [];
     	housing_details.get($scope.address1, $scope.address2).then(function(response) {
-            console.log(response);
-        	$scope.results.push(response.data.searchresults.response.results.result);
-        	console.log($scope.results[0]);
-    			$scope.tableDisplayed = true;
+            response.data.forEach(function(dataSet) {
+        	   $scope.results.push(dataSet.searchresults.response.results.result);
+            })
+			$scope.tableDisplayed = true;
         }, function(response) {
             $scope.tableDisplayed = false;
-        	$scope.error = "You have an invalid address.";
+        	$scope.error = response.data.error;
         });
     }
 
