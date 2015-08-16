@@ -1,13 +1,14 @@
 <div ng-app='app.exampleApp' ng-controller='ExampleCtrl'>
+<h4> Real Estate Data </h4>
 
 	<div class='row'>
-		<div class='col-sm-4'
-			<label for="address1">Address</label>
-			<input class="form-control" id="address1" ng-model="address1"></input>
+		<div class='col-sm-6'
+			<label for="address1">Addresses</label>
+			<textarea class="form-control" id="address1" ng-model="address1" placeholder = "Enter Addresses Separated by |"></textarea>
 		</div>
-		<div class='col-sm-4'
-			<label for="address2">City, State, and/or zip</label>
-			<input class="form-control" id="address2" ng-model="address2"></input>
+		<div class='col-sm-6'
+			<label for="address2">Zip Code</label>
+			<textarea class="form-control" id="address2" ng-model="address2" placeholder = "Enter Zip Codes Separated by |"></textarea>
 		</div>
 	</div>
 	<br>
@@ -39,10 +40,10 @@
       <td>{{result.address.state}}</td>
       <td>{{result.address.zipcode}}</td>
       <td>{{result.zestimate.last_updated}}</td>
-      <td>${{result.zestimate.amount.__content__}}</td>
-      <td>${{result.zestimate.valuationRange.high.__content__}}</td>
-      <td>${{result.zestimate.valuationRange.low.__content__}}</td>
-      <td>${{result.zestimate.valueChange.__content__}}</td>
+      <td>{{result.zestimate.amount.__content__ | currency}}</td>
+      <td>{{result.zestimate.valuationRange.high.__content__ | currency}}</td>
+      <td>{{result.zestimate.valuationRange.low.__content__ | currency}}</td>
+      <td>{{result.zestimate.valueChange.__content__ | currency}}</td>
     </tr>
   </table>
   </div>
