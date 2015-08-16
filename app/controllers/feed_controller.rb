@@ -7,11 +7,13 @@ class FeedController < ApplicationController
 	def housing_details
 		formatted_addresses = AddressParser.parse_and_encode(params[:address1], params[:address2])
 		render_404("Inputs do not match, please verify data or try a smaller set.") and return unless formatted_addresses
-		responses = formatted_addresses.map { |a| ZillowService.get_search_results a.first, a.last }
 
-		render_404("No Results Found") and return if responses.count == 0
+		@responses = formatted_addresses.map do |a|
+			result = ZillowService.get_deep_search_results a.first, a.last
+			result ? result["searchresults"]["response"]["results"]["result"] : result
+		end.compact
 
-		render json: responses.to_json
+		render_404("No Results Found") and return if @responses.count == 0
 	end
 
 end

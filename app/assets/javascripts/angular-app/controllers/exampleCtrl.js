@@ -1,17 +1,18 @@
 angular.module('app.exampleApp').controller("ExampleCtrl", [
   '$scope', 'housing_details', function($scope, housing_details) {
     $scope.tableDisplayed = false;
+    $scope.disableBtn = false
 
     $scope.search = function(){
-    	$scope.results = [];
+        $scope.disableBtn = true
     	housing_details.get($scope.address1, $scope.address2).then(function(response) {
-            response.data.forEach(function(dataSet) {
-        	   $scope.results.push(dataSet.searchresults.response.results.result);
-            })
+            $scope.results = response.data
 			$scope.tableDisplayed = true;
+            $scope.disableBtn = false;
         }, function(response) {
             $scope.tableDisplayed = false;
         	$scope.error = response.data.error;
+            $scope.disableBtn = false;
         });
     }
 

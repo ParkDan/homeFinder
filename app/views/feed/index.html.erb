@@ -12,7 +12,7 @@
 		</div>
 	</div>
 	<br>
-	<button type="button" class="btn btn-primary" ng-click="search()">Search</button>
+	<button type="button" ng-disabled="disableBtn" class="btn btn-primary" ng-click="search()">Search</button>
 	<br>
 	<br>
 	<div ng-show="error" class="forecast-errors alert alert-danger alert-dismissible fade in">
@@ -27,23 +27,47 @@
       <th>City</th>
       <th>state</th>
       <th>zipcode</th>
+      <th>use code</th>
       <th>Last Updated</th>
       <th>Zestimate Amount</th>
       <th>Valuation Range High</th>
       <th>Valuation Range Low</th>
       <th>Valuation Change</th>
+      <th>Home Details</th>
+      <th>Graphs and Data</th>
+      <th>Map this Home</th>
+      <th>Tax Assessment Year</th>
+      <th>Tax Assessment</th>
+      <th>Year Built</th>
+      <th>Lot Size Sq Ft</th>
+      <th>Finished Sq Ft</th>
+      <th>Bathrooms</th>
+      <th>Last Sold Date</th>
+      <th>Last Sold Price</th>
     </tr>
     <tr ng-repeat="result in results track by $index">
       <td>{{result.zpid}}</td>
-      <td>{{result.address.street}}</td>
-      <td>{{result.address.city}}</td>
-      <td>{{result.address.state}}</td>
-      <td>{{result.address.zipcode}}</td>
-      <td>{{result.zestimate.last_updated}}</td>
-      <td>{{result.zestimate.amount.__content__ | currency}}</td>
-      <td>{{result.zestimate.valuationRange.high.__content__ | currency}}</td>
-      <td>{{result.zestimate.valuationRange.low.__content__ | currency}}</td>
-      <td>{{result.zestimate.valueChange.__content__ | currency}}</td>
+      <td>{{result.street}}</td>
+      <td>{{result.city}}</td>
+      <td>{{result.state}}</td>
+      <td>{{result.zipcode}}</td>
+      <td>{{result.use_code}}</td>
+      <td>{{result.last_updated}}</td>
+      <td>{{result.zestimate_amount | currency}}</td>
+      <td>{{result.valuation_range_high | currency}}</td>
+      <td>{{result.valuation_range_low | currency}}</td>
+      <td>{{result.value_change | currency}}</td>
+      <td><a href={{result.home_details}} target="_blank">link</a></td>
+      <td><a href={{result.graphs_and_data}} target="_blank">link</a></td>
+      <td><a href={{result.map_this_home}} target="_blank">link</a></td>
+      <td>{{result.tax_assessment_year}}</td>
+      <td>{{result.tax_assessment | currency}}</td>
+      <td>{{result.year_built}}</td>
+      <td>{{result.lot_size_sq_ft}}</td>
+      <td>{{result.finished_sq_ft}}</td>
+      <td>{{result.Bathrooms}}</td>
+      <td>{{result.last_sold_date}}</td>
+      <td>{{result.last_sold_price | currency}}</td>
     </tr>
   </table>
   </div>
