@@ -1,4 +1,5 @@
 json.array! @responses do |response|
+  response = response.first if response.class == Array
   json.zpid response['zpid']
   json.street response['address']['street']
   json.city response['address']['city']

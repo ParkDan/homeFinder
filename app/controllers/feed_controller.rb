@@ -5,11 +5,10 @@ class FeedController < ApplicationController
   end
 
 	def housing_details
-		formatted_addresses = AddressParser.parse_and_encode(params[:address1], params[:address2])
+		formatted_addresses = AddressParser.parse_and_encode(params[:addresses])
 		render_404("Inputs do not match, please verify data or try a smaller set.") and return unless formatted_addresses
-
-		@responses = formatted_addresses.map do |a|
-			result = ZillowService.get_deep_search_results a.first, a.last
+		@responses = formatted_addresses.map do |address|
+			result = ZillowService.get_deep_search_results address[:address1], address[:zip]
 			result ? result["searchresults"]["response"]["results"]["result"] : result
 		end.compact
 

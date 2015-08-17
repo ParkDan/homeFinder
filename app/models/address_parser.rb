@@ -1,9 +1,11 @@
 class AddressParser
 
-  def self.parse_and_encode(addresses_string, zips_string)
-    addresses = addresses_string.split("|").each{|s| s.slice!("\t") }.map {|a| URI.encode(a)}
-    zips = zips_string.split("|").each{|s| s.slice!("\t") }.map {|a| URI.encode(a)}
-    return nil if addresses.count != zips.count
-    addresses.zip zips
+  def self.parse_and_encode(addresses)
+  	formatted_addresses = []
+  	addresses.split("\n").each do | row|
+  		split_row = row.split("\t")
+			formatted_addresses << { address1: URI.encode(split_row.first), zip: URI.encode(split_row.last) }
+  	end
+  	formatted_addresses
   end
 end

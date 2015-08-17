@@ -5,7 +5,7 @@ angular.module('app.exampleApp').controller("ExampleCtrl", [
 
     $scope.search = function(){
         $scope.disableBtn = true
-    	housing_details.get($scope.address1, $scope.address2).then(function(response) {
+    	housing_details.get($scope.addresses).then(function(response) {
             $scope.results = response.data
 			$scope.tableDisplayed = true;
             $scope.disableBtn = false;
