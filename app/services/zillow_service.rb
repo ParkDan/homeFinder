@@ -18,6 +18,7 @@ class ZillowService
 	def self.get_updated_property_details zpid
 		zillow_url = "http://www.zillow.com/webservice/GetUpdatedPropertyDetails.htm?zws-id=#{ENV["ZILLOW_KEY2"]}&zpid=#{zpid}"
 		response = HTTParty.get(zillow_url)
+		response["updatedPropertyDetails"]["response"] ? response["updatedPropertyDetails"]["response"]["editedFacts"] : nil
 	end
 
 	def self.get_deep_comps zpid

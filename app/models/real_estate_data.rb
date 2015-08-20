@@ -17,6 +17,7 @@ class RealEstateData
   end
 
   def merge_data
+
   	@data = []
   	@deep_responses.each_with_index do |response, i|
   		data_set = empty_data_set.merge(
@@ -48,6 +49,9 @@ class RealEstateData
 					data_set[:zestimate][:valuation_range_high] = response['zestimate']['valuationRange']['high']['__content__'] if response['zestimate']['valuationRange'] && response['zestimate']['valuationRange']['high']
 					data_set[:zestimate][:valuation_range_low] = response['zestimate']['valuationRange']['low']['__content__'] if response['zestimate']['valuationRange'] && response['zestimate']['valuationRange']['low']
 	  		end
+
+	  		updated_property_response = ZillowService.get_updated_property_details response['zpid'] if response['zpid']
+				data_set.keys.each { |key| data_set[key] = updated_property_response[key.to_s] if updated_property_response.keys.include? key.to_s } if updated_property_response
 
 	  		monthly_payments_response = ZillowService.calculate_monthly_payments data_set[:zestimate][:amount]
 				if monthly_payments_response && monthly_payments_response["paymentsdetails"] && monthly_payments_response["paymentsdetails"]["response"]
