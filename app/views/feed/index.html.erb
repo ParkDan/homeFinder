@@ -24,6 +24,15 @@
       <th>state</th>
       <th>zipcode</th>
       <th>use code</th>
+      <th>Listing Price</th>
+      <th>Monthly Principal and Interest</th>
+      <th>Monthly Property Tax</th>
+      <th>Monthly Hazard Insurance</th>
+      <th>Monthly PMI</th>
+      <th>Total Monthly Payment</th>
+      <th>Total Payment</th>
+      <th>Total Interest</th>
+      <th>Total Taxes Fees and Insurance</th>
       <th>Last Updated</th>
       <th>Zestimate Amount</th>
       <th>Valuation Range High</th>
@@ -43,14 +52,6 @@
       <th>Total Rooms</th>
       <th>Last Sold Date</th>
       <th>Last Sold Price</th>
-      <th>Monthly Principal and Interest</th>
-      <th>Monthly Property Tax</th>
-      <th>Monthly Hazard Insurance</th>
-      <th>Monthly PMI</th>
-      <th>Total Monthly Payment</th>
-      <th>Total Payment</th>
-      <th>Total Interest</th>
-      <th>Total Taxes Fees and Insurance</th>
     </tr>
     <tr ng-repeat="result in results track by $index">
       <td>{{result.zpid}}</td>
@@ -59,6 +60,15 @@
       <td>{{result.state}}</td>
       <td>{{result.zipcode}}</td>
       <td>{{result.use_code}}</td>
+      <td>{{result.listing_price | currency}}</td>
+      <td>{{result.monthly_principal_and_interest | currency}}</td>
+      <td>{{result.monthly_property_taxes | currency}}</td>
+      <td>{{result.monthly_hazard_insurance | currency}}</td>
+      <td>{{result.monthly_p_m_i | currency}}</td>
+      <td>{{result.total_monthly_payment | currency}}</td>
+      <td>{{result.total_payments | currency}}</td>
+      <td>{{result.total_interest | currency}}</td>
+      <td>{{result.total_taxes_fees_and_insurance | currency}}</td>
       <td>{{result.last_updated}}</td>
       <td>{{result.zestimate_amount | currency}}</td>
       <td>{{result.valuation_range_high | currency}}</td>
@@ -78,14 +88,6 @@
       <td>{{result.total_rooms}}</td>
       <td>{{result.last_sold_date}}</td>
       <td>{{result.last_sold_price | currency}}</td>
-      <td>{{result.monthly_principal_and_interest | currency}}</td>
-      <td>{{result.monthly_property_taxes | currency}}</td>
-      <td>{{result.monthly_hazard_insurance | currency}}</td>
-      <td>{{result.monthly_p_m_i | currency}}</td>
-      <td>{{result.total_monthly_payment | currency}}</td>
-      <td>{{result.total_payments | currency}}</td>
-      <td>{{result.total_interest | currency}}</td>
-      <td>{{result.total_taxes_fees_and_insurance | currency}}</td>
     </tr>
   </table>
 

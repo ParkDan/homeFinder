@@ -12,12 +12,12 @@ class RealEstateData
 		formatted_addresses.map do |address|
 			result = ZillowService.get_deep_search_results address[:address1], address[:zip]
 			search_result = result ? result["searchresults"]["response"]["results"]["result"] : result
-			search_result.class == Array ? search_result.first : search_result
+			search_result = search_result.class == Array ? search_result.first : search_result
+			search_result.merge(price: address[:price]) if search_result
 		end.compact
   end
 
   def merge_data
-
   	@data = []
   	@deep_responses.each_with_index do |response, i|
   		data_set = empty_data_set.merge(
@@ -38,7 +38,8 @@ class RealEstateData
 				bathrooms: response['bathrooms'],
 				bedrooms: response['bedrooms'],
 				total_rooms: response['totalRooms'],
-				last_sold_date: response['lastSoldDate']
+				last_sold_date: response['lastSoldDate'],
+				listing_price: response[:price]
   		)
 				data_set.merge!( last_sold_price: response['lastSoldPrice']['__content__']) if response['lastSoldPrice']
 	  		if response['zestimate']
@@ -53,7 +54,7 @@ class RealEstateData
 	  		updated_property_response = ZillowService.get_updated_property_details response['zpid'] if response['zpid']
 				data_set.keys.each { |key| data_set[key] = updated_property_response[key.to_s] if updated_property_response.keys.include? key.to_s } if updated_property_response
 
-	  		monthly_payments_response = ZillowService.calculate_monthly_payments data_set[:zestimate][:amount]
+	  		monthly_payments_response = ZillowService.calculate_monthly_payments data_set[:listing_price]
 				if monthly_payments_response && monthly_payments_response["paymentsdetails"] && monthly_payments_response["paymentsdetails"]["response"]
 					data_set[:calculator][:monthly_principal_and_interest] = monthly_payments_response["paymentsdetails"]["response"]["monthlyprincipalandinterest"]
 					data_set[:calculator][:monthly_property_taxes] = monthly_payments_response["paymentsdetails"]["response"]["monthlypropertytaxes"]
@@ -90,6 +91,7 @@ class RealEstateData
 			total_rooms: '',
 			last_sold_date: '',
 			last_sold_price: '',
+			listing_price: '',
 			zestimate: {
 				last_updated: '',
 				percentile: '',

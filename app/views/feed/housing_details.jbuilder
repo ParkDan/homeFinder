@@ -24,6 +24,7 @@ json.array! @data_set do |data|
   json.total_rooms data[:total_rooms]
   json.last_sold_date data[:last_sold_date]
   json.last_sold_price data[:last_sold_price]
+  json.listing_price data[:listing_price]
   json.monthly_principal_and_interest data[:calculator][:monthly_principal_and_interest]
   json.monthly_property_taxes data[:calculator][:monthly_property_taxes]
   json.monthly_hazard_insurance data[:calculator][:monthly_hazard_insurance]
