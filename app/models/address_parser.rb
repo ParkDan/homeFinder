@@ -1,5 +1,4 @@
 class AddressParser
-
   def self.parse_and_encode(addresses)
   	formatted_addresses = []
   	addresses.split("\n").each do | row|

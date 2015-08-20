@@ -28,7 +28,8 @@
       <th>Zestimate Amount</th>
       <th>Valuation Range High</th>
       <th>Valuation Range Low</th>
-      <th>Valuation Change</th>
+      <th>Value Change</th>
+      <th>Percentile</th>
       <th>Home Details</th>
       <th>Graphs and Data</th>
       <th>Map this Home</th>
@@ -38,8 +39,18 @@
       <th>Lot Size Sq Ft</th>
       <th>Finished Sq Ft</th>
       <th>Bathrooms</th>
+      <th>Bedrooms</th>
+      <th>Total Rooms</th>
       <th>Last Sold Date</th>
       <th>Last Sold Price</th>
+      <th>Monthly Principal and Interest</th>
+      <th>Monthly Property Tax</th>
+      <th>Monthly Hazard Insurance</th>
+      <th>Monthly PMI</th>
+      <th>Total Monthly Payment</th>
+      <th>Total Payment</th>
+      <th>Total Interest</th>
+      <th>Total Taxes Fees and Insurance</th>
     </tr>
     <tr ng-repeat="result in results track by $index">
       <td>{{result.zpid}}</td>
@@ -53,6 +64,7 @@
       <td>{{result.valuation_range_high | currency}}</td>
       <td>{{result.valuation_range_low | currency}}</td>
       <td>{{result.value_change | currency}}</td>
+      <td>{{result.percentile}}</td>
       <td><a href={{result.home_details}} target="_blank">link</a></td>
       <td><a href={{result.graphs_and_data}} target="_blank">link</a></td>
       <td><a href={{result.map_this_home}} target="_blank">link</a></td>
@@ -61,11 +73,22 @@
       <td>{{result.year_built}}</td>
       <td>{{result.lot_size_sq_ft}}</td>
       <td>{{result.finished_sq_ft}}</td>
-      <td>{{result.Bathrooms}}</td>
+      <td>{{result.bathrooms}}</td>
+      <td>{{result.bedrooms}}</td>
+      <td>{{result.total_rooms}}</td>
       <td>{{result.last_sold_date}}</td>
       <td>{{result.last_sold_price | currency}}</td>
+      <td>{{result.monthly_principal_and_interest | currency}}</td>
+      <td>{{result.monthly_property_taxes | currency}}</td>
+      <td>{{result.monthly_hazard_insurance | currency}}</td>
+      <td>{{result.monthly_p_m_i | currency}}</td>
+      <td>{{result.total_monthly_payment | currency}}</td>
+      <td>{{result.total_payments | currency}}</td>
+      <td>{{result.total_interest | currency}}</td>
+      <td>{{result.total_taxes_fees_and_insurance | currency}}</td>
     </tr>
   </table>
+
   </div>
   <div ng-show="tableDisplayed" class='row'>
     <div class='col-sm-4'
