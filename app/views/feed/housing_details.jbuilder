@@ -6,11 +6,18 @@ json.array! @data_set do |data|
   json.zipcode data[:zipcode]
   json.use_code data[:use_code]
   json.last_updated data[:zestimate][:last_updated]
+
   json.zestimate_amount data[:zestimate][:amount]
   json.valuation_range_high data[:zestimate][:valuation_range_high]
   json.valuation_range_low data[:zestimate][:valuation_range_low]
   json.value_change data[:zestimate][:value_change]
   json.percentile data[:zestimate][:percentile]
+  json.rental_z_amount data[:rent_zestimate][:amount]
+  json.rental_z_valuation_range_high data[:rent_zestimate][:valuation_range_high]
+  json.rental_z_valuation_range_low data[:rent_zestimate][:valuation_range_low]
+  json.rental_z_value_change data[:rent_zestimate][:value_change]
+  json.rental_z_percentile data[:rent_zestimate][:percentile]
+
   json.home_details data[:home_details]
   json.graphs_and_data data[:graphs_and_data]
   json.map_this_home data[:map_this_home]

@@ -39,6 +39,11 @@
       <th>Valuation Range Low</th>
       <th>Value Change</th>
       <th>Percentile</th>
+      <th>Rental Z Amount</th>
+      <th>Rental Z Valuation Range High</th>
+      <th>Rental Z Valuation Range Low</th>
+      <th>Rental Z Value Change</th>
+      <th>Rental Z Percentile</th>
       <th>Home Details</th>
       <th>Graphs and Data</th>
       <th>Map this Home</th>
@@ -53,6 +58,7 @@
       <th>Last Sold Date</th>
       <th>Last Sold Price</th>
     </tr>
+
     <tr ng-repeat="result in results track by $index">
       <td>{{result.zpid}}</td>
       <td>{{result.street}}</td>
@@ -75,6 +81,11 @@
       <td>{{result.valuation_range_low | currency}}</td>
       <td>{{result.value_change | currency}}</td>
       <td>{{result.percentile}}</td>
+      <td>{{result.rental_z_amount | currency}}</td>
+      <td>{{result.rental_z_valuation_range_high | currency}}</td>
+      <td>{{result.rental_z_valuation_range_low | currency}}</td>
+      <td>{{result.rental_z_value_change | currency}}</td>
+      <td>{{result.rental_z_percentile}}</td>
       <td><a href={{result.home_details}} target="_blank">link</a></td>
       <td><a href={{result.graphs_and_data}} target="_blank">link</a></td>
       <td><a href={{result.map_this_home}} target="_blank">link</a></td>

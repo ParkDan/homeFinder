@@ -51,6 +51,14 @@ class RealEstateData
 					data_set[:zestimate][:valuation_range_low] = response['zestimate']['valuationRange']['low']['__content__'] if response['zestimate']['valuationRange'] && response['zestimate']['valuationRange']['low']
 	  		end
 
+				if response['rentzestimate']
+					data_set[:rent_zestimate][:last_updated] = response['rentzestimate']['last_updated']
+					data_set[:rent_zestimate][:percentile] = response['rentzestimate']['percentile']
+					data_set[:rent_zestimate][:amount] = response['rentzestimate']['amount']['__content__'] if response['rentzestimate']['amount']
+					data_set[:rent_zestimate][:value_change] = response['rentzestimate']['valueChange']['__content__'] if response['rentzestimate']['valueChange']
+					data_set[:rent_zestimate][:valuation_range_high] = response['rentzestimate']['valuationRange']['high']['__content__'] if response['rentzestimate']['valuationRange'] && response['rentzestimate']['valuationRange']['high']
+					data_set[:rent_zestimate][:valuation_range_low] = response['rentzestimate']['valuationRange']['low']['__content__'] if response['rentzestimate']['valuationRange'] && response['rentzestimate']['valuationRange']['low']
+	  		end
 	  		updated_property_response = ZillowService.get_updated_property_details response['zpid'] if response['zpid']
 				data_set.keys.each { |key| data_set[key] = updated_property_response[key.to_s] if updated_property_response.keys.include? key.to_s } if updated_property_response
 
@@ -93,6 +101,14 @@ class RealEstateData
 			last_sold_price: '',
 			listing_price: '',
 			zestimate: {
+				last_updated: '',
+				percentile: '',
+				amount: '',
+				valuation_range_high: '',
+				valuation_range_low: '',
+				value_change: '',
+			},
+			rent_zestimate: {
 				last_updated: '',
 				percentile: '',
 				amount: '',
