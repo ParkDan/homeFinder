@@ -54,7 +54,7 @@ class RealEstateData
 	  		updated_property_response = ZillowService.get_updated_property_details response['zpid'] if response['zpid']
 				data_set.keys.each { |key| data_set[key] = updated_property_response[key.to_s] if updated_property_response.keys.include? key.to_s } if updated_property_response
 
-	  		monthly_payments_response = ZillowService.calculate_monthly_payments data_set[:listing_price]
+	  		monthly_payments_response = ZillowService.calculate_monthly_payments data_set[:listing_price], data_set[:zipcode]
 				if monthly_payments_response && monthly_payments_response["paymentsdetails"] && monthly_payments_response["paymentsdetails"]["response"]
 					data_set[:calculator][:monthly_principal_and_interest] = monthly_payments_response["paymentsdetails"]["response"]["monthlyprincipalandinterest"]
 					data_set[:calculator][:monthly_property_taxes] = monthly_payments_response["paymentsdetails"]["response"]["monthlypropertytaxes"]
