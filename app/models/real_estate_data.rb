@@ -58,7 +58,7 @@ class RealEstateData
 				if monthly_payments_response && monthly_payments_response["paymentsdetails"] && monthly_payments_response["paymentsdetails"]["response"]
 					data_set[:calculator][:monthly_principal_and_interest] = monthly_payments_response["paymentsdetails"]["response"]["monthlyprincipalandinterest"]
 					data_set[:calculator][:monthly_property_taxes] = monthly_payments_response["paymentsdetails"]["response"]["monthlypropertytaxes"]
-					data_set[:calculator][:monthly_hazard_insurance] = monthly_payments_response["paymentsdetails"]["response"]["monthlypropertytaxes"]
+					data_set[:calculator][:monthly_hazard_insurance] = monthly_payments_response["paymentsdetails"]["response"]["monthlyhazardinsurance"]
 					data_set[:calculator][:monthly_p_m_i] = monthly_payments_response["paymentsdetails"]["response"]["monthlypmi"]
 					data_set[:calculator][:total_monthly_payment] = monthly_payments_response["paymentsdetails"]["response"]["totalmonthlypayment"]
 					data_set[:calculator][:total_payments] = monthly_payments_response["paymentsdetails"]["response"]["totalpayments"]
