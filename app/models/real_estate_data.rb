@@ -1,25 +1,28 @@
 class RealEstateData
 	attr_reader :data
   def initialize (formatted_addresses)
-  	@deep_responses = deep_search_for formatted_addresses
+  	@formatted_addresses = formatted_addresses
+  	@deep_responses = deep_search
   	return if @deep_responses.count == 0
   	merge_data
   end
 
   private
-
-  def deep_search_for formatted_addresses
-		formatted_addresses.map do |address|
+  def deep_search
+		@formatted_addresses.map do |address|
 			result = ZillowService.get_deep_search_results address[:address1], address[:zip]
 			search_result = result ? result["searchresults"]["response"]["results"]["result"] : result
 			search_result = search_result.class == Array ? search_result.first : search_result
 			search_result.merge(price: address[:price]) if search_result
-		end.compact
+		end
   end
 
   def merge_data
   	@data = []
   	@deep_responses.each_with_index do |response, i|
+  		@data << empty_data_set.merge(zpid: "INVALID",
+  																	street: URI.decode(@formatted_addresses[i][:address1]),
+  																	zipcode: URI.decode(@formatted_addresses[i][:zip])) and next unless response
   		data_set = empty_data_set.merge(
 				zpid: response['zpid'],
 				street: response['address']['street'],
