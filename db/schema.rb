@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150814132515) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.string   "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

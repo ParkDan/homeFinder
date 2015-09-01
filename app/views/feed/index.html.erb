@@ -3,7 +3,7 @@
 	<div class='row'>
 		<div class='col-sm-6'
 			<label for="addresses">Addresses</label>
-			<textarea class="form-control" id="addresses" maxlength="1660" ng-model="addresses" placeholder = "Enter Addresses"></textarea>
+			<textarea class="form-control" id="addresses"  ng-model="addresses" placeholder = "Enter Addresses"></textarea>
 		</div>
 	</div>
 	<br>
@@ -66,25 +66,25 @@
       <td>{{result.zipcode}}</td>
       <td>{{result.use_code}}</td>
       <td>{{result.listing_price | currency}}</td>
-      <td>{{result.monthly_principal_and_interest | currency}}</td>
-      <td>{{result.monthly_property_taxes | currency}}</td>
-      <td>{{result.monthly_hazard_insurance | currency}}</td>
-      <td>{{result.monthly_p_m_i | currency}}</td>
-      <td>{{result.total_monthly_payment | currency}}</td>
-      <td>{{result.total_payments | currency}}</td>
-      <td>{{result.total_interest | currency}}</td>
-      <td>{{result.total_taxes_fees_and_insurance | currency}}</td>
-      <td>{{result.last_updated}}</td>
-      <td>{{result.zestimate_amount | currency}}</td>
-      <td>{{result.valuation_range_high | currency}}</td>
-      <td>{{result.valuation_range_low | currency}}</td>
-      <td>{{result.value_change | currency}}</td>
-      <td>{{result.percentile}}</td>
-      <td>{{result.rental_z_amount | currency}}</td>
-      <td>{{result.rental_z_valuation_range_high | currency}}</td>
-      <td>{{result.rental_z_valuation_range_low | currency}}</td>
-      <td>{{result.rental_z_value_change | currency}}</td>
-      <td>{{result.rental_z_percentile}}</td>
+      <td>{{result.calculator.monthly_principal_and_interest | currency}}</td>
+      <td>{{result.calculator.monthly_property_taxes | currency}}</td>
+      <td>{{result.calculator.monthly_hazard_insurance | currency}}</td>
+      <td>{{result.calculator.monthly_p_m_i | currency}}</td>
+      <td>{{result.calculator.total_monthly_payment | currency}}</td>
+      <td>{{result.calculator.total_payments | currency}}</td>
+      <td>{{result.calculator.total_interest | currency}}</td>
+      <td>{{result.calculator.total_taxes_fees_and_insurance | currency}}</td>
+      <td>{{result.zestimate.last_updated}}</td>
+      <td>{{result.zestimate.amount | currency}}</td>
+      <td>{{result.zestimate.valuation_range_high | currency}}</td>
+      <td>{{result.zestimate.valuation_range_low | currency}}</td>
+      <td>{{result.zestimate.value_change | currency}}</td>
+      <td>{{result.zestimate.percentile}}</td>
+      <td>{{result.rent_zestimate.amount | currency}}</td>
+      <td>{{result.rent_zestimate.valuation_range_high | currency}}</td>
+      <td>{{result.rent_zestimate.valuation_range_low | currency}}</td>
+      <td>{{result.rent_zestimate.value_change | currency}}</td>
+      <td>{{result.rent_zestimate.percentile}}</td>
       <td><a href={{result.home_details}} target="_blank">link</a></td>
       <td><a href={{result.graphs_and_data}} target="_blank">link</a></td>
       <td><a href={{result.map_this_home}} target="_blank">link</a></td>
