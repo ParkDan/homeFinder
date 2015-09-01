@@ -9,8 +9,8 @@ class RealEstateData
 
   private
   def deep_search
-		@formatted_addresses.map do |address|
-			result = ZillowService.get_deep_search_results address[:address1], address[:zip]
+		@formatted_addresses.each_with_index.map do |address, i|
+			result = ZillowService.get_deep_search_results address[:address1], address[:zip], (i % 2 + 1)
 			search_result = result ? result["searchresults"]["response"]["results"]["result"] : result
 			search_result = search_result.class == Array ? search_result.first : search_result
 			search_result.merge(price: address[:price]) if search_result
@@ -62,10 +62,10 @@ class RealEstateData
 					data_set[:rent_zestimate][:valuation_range_high] = response['rentzestimate']['valuationRange']['high']['__content__'] if response['rentzestimate']['valuationRange'] && response['rentzestimate']['valuationRange']['high']
 					data_set[:rent_zestimate][:valuation_range_low] = response['rentzestimate']['valuationRange']['low']['__content__'] if response['rentzestimate']['valuationRange'] && response['rentzestimate']['valuationRange']['low']
 	  		end
-	  		updated_property_response = ZillowService.get_updated_property_details response['zpid'] if response['zpid']
+	  		updated_property_response = ZillowService.get_updated_property_details response['zpid'], (i % 2 + 1) if response['zpid']
 				data_set.keys.each { |key| data_set[key] = updated_property_response[key.to_s] if updated_property_response.keys.include? key.to_s } if updated_property_response
 
-	  		monthly_payments_response = ZillowService.calculate_monthly_payments data_set[:listing_price], data_set[:zipcode]
+	  		monthly_payments_response = ZillowService.calculate_monthly_payments data_set[:listing_price], data_set[:zipcode], (i % 2 + 1)
 				if monthly_payments_response && monthly_payments_response["paymentsdetails"] && monthly_payments_response["paymentsdetails"]["response"]
 					data_set[:calculator][:monthly_principal_and_interest] = monthly_payments_response["paymentsdetails"]["response"]["monthlyprincipalandinterest"]
 					data_set[:calculator][:monthly_property_taxes] = monthly_payments_response["paymentsdetails"]["response"]["monthlypropertytaxes"]
