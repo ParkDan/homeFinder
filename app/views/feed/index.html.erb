@@ -14,6 +14,11 @@
     <button type="button" ng-click='clearErrors()' class="close" data-dismiss="alert" aria-label="Close">x</button>
   	{{ error }}
   </div>
+<div class='row'>
+  <div class='col-sm-6'><img ng-show="tableDisplayed" src="http://www.zillow.com/widgets/GetVersionedResource.htm?path=/static/logos/Zillowlogo_200x50.gif" width="200" height="50" alt="Zillow Real Estate Search" /></div>
+  <div class='col-sm-6' ng-show="tableDisplayed" >See <a target="_blank" href="http://www.zillow.com/mortgage-calculator/" >mortgage calculator</a> options on Zillow</div>
+<br>
+<br>
 <div id="exportable">
 	<table ng-show="tableDisplayed" id="real-estate-details" class="table table-bordered table-striped">
     <tr>
@@ -32,17 +37,17 @@
       <th>Total Payment</th>
       <th>Total Interest</th>
       <th>Total Taxes Fees and Insurance</th>
-      <th>Last Updated</th>
+      <th>Zestimate Last Updated</th>
       <th>Zestimate Amount</th>
-      <th>Valuation Range High</th>
-      <th>Valuation Range Low</th>
-      <th>Value Change</th>
-      <th>Percentile</th>
-      <th>Rental Z Amount</th>
-      <th>Rental Z Valuation Range High</th>
-      <th>Rental Z Valuation Range Low</th>
-      <th>Rental Z Value Change</th>
-      <th>Rental Z Percentile</th>
+      <th>Zestimate Valuation Range High</th>
+      <th>Zestimate Valuation Range Low</th>
+      <th>Zestimate Value Change</th>
+      <th>Zestimate Percentile</th>
+      <th>Rent Zestimate Amount</th>
+      <th>Rent Zestimate Valuation Range High</th>
+      <th>Rent Zestimate Valuation Range Low</th>
+      <th>Rent Zestimate Value Change</th>
+      <th>Rent Zestimate Percentile</th>
       <th>Home Details</th>
       <th>Graphs and Data</th>
       <th>Map this Home</th>
@@ -110,4 +115,7 @@
       <button type="button" class="btn btn-primary" ng-click="exportData(fileName)">Export</button>
     </div>
   </div>
+  <br>
+  <br>
+
 </div>
