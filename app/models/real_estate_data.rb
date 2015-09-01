@@ -63,7 +63,7 @@ class RealEstateData
 					data_set[:rent_zestimate][:valuation_range_low] = response['rentzestimate']['valuationRange']['low']['__content__'] if response['rentzestimate']['valuationRange'] && response['rentzestimate']['valuationRange']['low']
 	  		end
 	  		updated_property_response = ZillowService.get_updated_property_details response['zpid'], (i % 2 + 1) if response['zpid']
-				data_set.keys.each { |key| data_set[key] = updated_property_response[key.to_s] if updated_property_response.keys.include? key.to_s } if updated_property_response
+				data_set.keys.each { |key| data_set[key] = updated_property_response[key.to_s.camelize(:lower)] if updated_property_response.keys.include? key.to_s.camelize(:lower) } if updated_property_response
 
 	  		monthly_payments_response = ZillowService.calculate_monthly_payments data_set[:listing_price], data_set[:zipcode], (i % 2 + 1)
 				if monthly_payments_response && monthly_payments_response["paymentsdetails"] && monthly_payments_response["paymentsdetails"]["response"]
@@ -103,6 +103,18 @@ class RealEstateData
 			last_sold_date: '',
 			last_sold_price: '',
 			listing_price: '',
+			exterior_material: '',
+			parking_type: '',
+			heating_sources: '',
+			cooling_system: '',
+			appliances: '',
+			floor_covering: '',
+			num_units: '',
+			heating_system: '',
+			num_floors: '',
+			covered_parking_spaces: '',
+			rooms: '',
+			view: '',
 			zestimate: {
 				last_updated: '',
 				percentile: '',
