@@ -25,7 +25,7 @@ class ZillowService
 	end
 
 	def self.calculate_monthly_payments price, zip, zillow_id = 1
-		return if price.to_f == 0
+		return if price == 0
 		down_payment = ((DOWN_PAYMENT / price.to_f) * 100).to_i
 		zillow_url = "http://www.zillow.com/webservice/mortgage/CalculateMonthlyPaymentsAdvanced.htm?zws-id=#{ENV['ZILLOW_KEY' + zillow_id.to_s]}&price=#{price}&down=#{down_payment}&zip=#{zip}"
 		response = HTTParty.get(zillow_url)
