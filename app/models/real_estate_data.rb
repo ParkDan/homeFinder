@@ -8,6 +8,7 @@ class RealEstateData
   end
 
   private
+
   def deep_search
 		@formatted_addresses.each_with_index.map do |address, i|
 			result = ZillowService.get_deep_search_results address[:address1], address[:zip], (i % 3 + 1)

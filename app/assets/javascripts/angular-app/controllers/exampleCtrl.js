@@ -29,6 +29,5 @@ angular.module('app.exampleApp').controller("ExampleCtrl", [
         });
         saveAs(blob, fileName + ".xls");
     }
-
   }
 ]);

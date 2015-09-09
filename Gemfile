@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 gem 'dotenv-rails'
+
+gem 'delayed_job_active_record'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -50,4 +53,5 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
