@@ -2,6 +2,7 @@ angular.module('app.exampleApp').controller("ExampleCtrl", [
   '$scope', 'housing_details', function($scope, housing_details) {
     $scope.tableDisplayed = false;
     $scope.disableBtn = false
+    $scope.date = new Date();
 
     $scope.search = function(){
         $scope.disableBtn = true
