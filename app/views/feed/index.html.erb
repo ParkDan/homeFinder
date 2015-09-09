@@ -22,7 +22,6 @@
 <div id="exportable">
 	<table ng-show="tableDisplayed" id="real-estate-details" class="table table-bordered table-striped">
     <tr>
-      <th>Date Pulled</th>
       <th>zpid</th>
       <th>Street</th>
       <th>City</th>
@@ -30,6 +29,7 @@
       <th>zipcode</th>
       <th>use code</th>
       <th>Listing Price</th>
+      <th>Date Pulled</th>
       <th>Monthly Principal and Interest</th>
       <th>Monthly Property Tax</th>
       <th>Monthly Hazard Insurance</th>
@@ -77,7 +77,6 @@
     </tr>
 
     <tr ng-repeat="result in results track by $index">
-      <td>{{date | date:'yyyy-MM-dd'}}</td>
       <td>{{result.zpid}}</td>
       <td>{{result.street}}</td>
       <td>{{result.city}}</td>
@@ -85,6 +84,7 @@
       <td>{{result.zipcode}}</td>
       <td>{{result.use_code}}</td>
       <td>{{result.listing_price | currency}}</td>
+      <td>{{date | date:'yyyy-MM-dd'}}</td>
       <td>{{result.calculator.monthly_principal_and_interest | currency}}</td>
       <td>{{result.calculator.monthly_property_taxes | currency}}</td>
       <td>{{result.calculator.monthly_hazard_insurance | currency}}</td>
