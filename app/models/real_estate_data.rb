@@ -11,6 +11,7 @@ class RealEstateData
 
   def deep_search
 		@formatted_addresses.each_with_index.map do |address, i|
+			p '*' if i % 10 == 0
 			result = ZillowService.get_deep_search_results address[:address1], address[:zip], (i % 3 + 1)
 			search_result = result ? result["searchresults"]["response"]["results"]["result"] : result
 			search_result = search_result.class == Array ? search_result.first : search_result
@@ -21,6 +22,7 @@ class RealEstateData
   def merge_data
   	@data = []
   	@deep_responses.each_with_index do |response, i|
+			p '+' if i % 10 == 0
   		@data << empty_data_set.merge(zpid: "INVALID",
   																	street: URI.decode(@formatted_addresses[i][:address1]),
   																	zipcode: URI.decode(@formatted_addresses[i][:zip])) and next unless response
