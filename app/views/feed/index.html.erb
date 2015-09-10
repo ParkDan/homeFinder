@@ -16,9 +16,15 @@
   </div>
 <div class='row'>
   <div class='col-sm-6'><img ng-show="tableDisplayed" src="http://www.zillow.com/widgets/GetVersionedResource.htm?path=/static/logos/Zillowlogo_200x50.gif" width="200" height="50" alt="Zillow Real Estate Search" /></div>
-  <div class='col-sm-6' ng-show="tableDisplayed" >See <a target="_blank" href="http://www.zillow.com/mortgage-calculator/" >mortgage calculator</a> options on Zillow</div>
+  <div class='col-sm-6' ng-show="tableDisplayed" >
+    See <a target="_blank" href="http://www.zillow.com/mortgage-calculator/" >mortgage calculator</a> options on Zillow
+  </div>
+</div>
+
 <br>
+<h5 ng-show="tableDisplayed">{{ listings.length }} / {{formatted_addresses.length}} Results Displayed</h5>
 <br>
+
 <div id="exportable">
 	<table ng-show="tableDisplayed" id="real-estate-details" class="table table-bordered table-striped">
     <tr>
@@ -76,59 +82,59 @@
       <th>Last Sold Price</th>
     </tr>
 
-    <tr ng-repeat="result in results track by $index">
-      <td>{{result.zpid}}</td>
-      <td>{{result.street}}</td>
-      <td>{{result.city}}</td>
-      <td>{{result.state}}</td>
-      <td>{{result.zipcode}}</td>
-      <td>{{result.use_code}}</td>
-      <td>{{result.listing_price | currency}}</td>
+    <tr ng-repeat="listing in listings track by $index">
+      <td>{{listing.zpid}}</td>
+      <td>{{listing.street}}</td>
+      <td>{{listing.city}}</td>
+      <td>{{listing.state}}</td>
+      <td>{{listing.zipcode}}</td>
+      <td>{{listing.use_code}}</td>
+      <td>{{listing.listing_price | currency}}</td>
       <td>{{date | date:'yyyy-MM-dd'}}</td>
-      <td>{{result.calculator.monthly_principal_and_interest | currency}}</td>
-      <td>{{result.calculator.monthly_property_taxes | currency}}</td>
-      <td>{{result.calculator.monthly_hazard_insurance | currency}}</td>
-      <td>{{result.calculator.monthly_p_m_i | currency}}</td>
-      <td>{{result.calculator.total_monthly_payment | currency}}</td>
-      <td>{{result.calculator.total_payments | currency}}</td>
-      <td>{{result.calculator.total_interest | currency}}</td>
-      <td>{{result.calculator.total_taxes_fees_and_insurance | currency}}</td>
-      <td>{{result.zestimate.last_updated}}</td>
-      <td>{{result.zestimate.amount | currency}}</td>
-      <td>{{result.zestimate.valuation_range_high | currency}}</td>
-      <td>{{result.zestimate.valuation_range_low | currency}}</td>
-      <td>{{result.zestimate.value_change | currency}}</td>
-      <td>{{result.zestimate.percentile}}</td>
-      <td>{{result.rent_zestimate.amount | currency}}</td>
-      <td>{{result.rent_zestimate.valuation_range_high | currency}}</td>
-      <td>{{result.rent_zestimate.valuation_range_low | currency}}</td>
-      <td>{{result.rent_zestimate.value_change | currency}}</td>
-      <td>{{result.rent_zestimate.percentile}}</td>
-      <!-- <td><a href={{result.home_details}} target="_blank">link</a></td>
-      <td><a href={{result.graphs_and_data}} target="_blank">link</a></td>
-      <td><a href={{result.map_this_home}} target="_blank">link</a></td> -->
-      <td>{{result.tax_assessment_year}}</td>
-      <td>{{result.tax_assessment | currency}}</td>
-      <td>{{result.exterior_material}}</td>
-      <td>{{result.parking_type}}</td>
-      <td>{{result.heating_sources}}</td>
-      <td>{{result.cooling_system}}</td>
-      <td>{{result.appliances}}</td>
-      <td>{{result.floor_covering}}</td>
-      <td>{{result.num_units}}</td>
-      <td>{{result.heating_system}}</td>
-      <td>{{result.num_floors}}</td>
-      <td>{{result.covered_parking_spaces}}</td>
-      <td>{{result.rooms}}</td>
-      <td>{{result.view}}</td>
-      <td>{{result.year_built}}</td>
-      <td>{{result.lot_size_sq_ft}}</td>
-      <td>{{result.finished_sq_ft}}</td>
-      <td>{{result.bathrooms}}</td>
-      <td>{{result.bedrooms}}</td>
-      <td>{{result.total_rooms}}</td>
-      <td>{{result.last_sold_date}}</td>
-      <td>{{result.last_sold_price | currency}}</td>
+      <td>{{listing.calculator.monthly_principal_and_interest | currency}}</td>
+      <td>{{listing.calculator.monthly_property_taxes | currency}}</td>
+      <td>{{listing.calculator.monthly_hazard_insurance | currency}}</td>
+      <td>{{listing.calculator.monthly_p_m_i | currency}}</td>
+      <td>{{listing.calculator.total_monthly_payment | currency}}</td>
+      <td>{{listing.calculator.total_payments | currency}}</td>
+      <td>{{listing.calculator.total_interest | currency}}</td>
+      <td>{{listing.calculator.total_taxes_fees_and_insurance | currency}}</td>
+      <td>{{listing.zestimate.last_updated}}</td>
+      <td>{{listing.zestimate.amount | currency}}</td>
+      <td>{{listing.zestimate.valuation_range_high | currency}}</td>
+      <td>{{listing.zestimate.valuation_range_low | currency}}</td>
+      <td>{{listing.zestimate.value_change | currency}}</td>
+      <td>{{listing.zestimate.percentile}}</td>
+      <td>{{listing.rent_zestimate.amount | currency}}</td>
+      <td>{{listing.rent_zestimate.valuation_range_high | currency}}</td>
+      <td>{{listing.rent_zestimate.valuation_range_low | currency}}</td>
+      <td>{{listing.rent_zestimate.value_change | currency}}</td>
+      <td>{{listing.rent_zestimate.percentile}}</td>
+      <!-- <td><a href={{listing.home_details}} target="_blank">link</a></td>
+      <td><a href={{listing.graphs_and_data}} target="_blank">link</a></td>
+      <td><a href={{listing.map_this_home}} target="_blank">link</a></td> -->
+      <td>{{listing.tax_assessment_year}}</td>
+      <td>{{listing.tax_assessment | currency}}</td>
+      <td>{{listing.exterior_material}}</td>
+      <td>{{listing.parking_type}}</td>
+      <td>{{listing.heating_sources}}</td>
+      <td>{{listing.cooling_system}}</td>
+      <td>{{listing.appliances}}</td>
+      <td>{{listing.floor_covering}}</td>
+      <td>{{listing.num_units}}</td>
+      <td>{{listing.heating_system}}</td>
+      <td>{{listing.num_floors}}</td>
+      <td>{{listing.covered_parking_spaces}}</td>
+      <td>{{listing.rooms}}</td>
+      <td>{{listing.view}}</td>
+      <td>{{listing.year_built}}</td>
+      <td>{{listing.lot_size_sq_ft}}</td>
+      <td>{{listing.finished_sq_ft}}</td>
+      <td>{{listing.bathrooms}}</td>
+      <td>{{listing.bedrooms}}</td>
+      <td>{{listing.total_rooms}}</td>
+      <td>{{listing.last_sold_date}}</td>
+      <td>{{listing.last_sold_price | currency}}</td>
     </tr>
   </table>
 

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'feed#index'
+  post 'format_addresses', to: 'feed#format_addresses'
   post 'build_addresses', to: 'feed#build_addresses'
 
   # You can have the root of your site routed with "root"
